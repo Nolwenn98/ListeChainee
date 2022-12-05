@@ -79,13 +79,14 @@ int d_ll_length(double_linked_list *list)
     return (1 + d_ll_length(list->next));
 }
 
-void d_ll_add_index(double_linked_list **list, int index, double_linked_list *elem)
+int d_ll_add_index(double_linked_list **list, int index, double_linked_list *elem)
 {
     int length = d_ll_length(*list);
     if (index > length)
     {
         printf("Ajout impossible !");
-        exit(1);
+        return 0;
+        // exit(1);
     }
 
     double_linked_list *ptr_next;
@@ -99,4 +100,5 @@ void d_ll_add_index(double_linked_list **list, int index, double_linked_list *el
     elem->next = ptr_next;
     elem->prev = ptr_prev;
     ptr_prev->next = elem;
+    return 0;
 }

@@ -92,16 +92,18 @@ void test_ll_add_index(void)
 void test_ll_get_index(void)
 {
     Liste *liste;
-    int test1, test2;
+    int test1, test2, test3;
     liste = init_list(0);
 
     ll_get_new_elem(liste, 1);
     ll_get_new_elem(liste, 3);
     test1 = ll_get_value_index(&liste, 0);
     test2 = ll_get_value_index(&liste, 2);
+    test3 = ll_get_value_index(&liste, 6);
 
     CU_ASSERT(test1 == 0);
     CU_ASSERT(test2 == 3);
+    CU_ASSERT(test3 == -1);
 
     ll_free(&liste);
 }
@@ -126,6 +128,24 @@ void test_ll_swap_index(void)
     CU_ASSERT(liste->next->number == 2);
     CU_ASSERT(liste->next->next->number == 1);
     CU_ASSERT(liste->next->next->next->number == 0);
+
+    ll_swap_index(&liste, 3, 0);
+    CU_ASSERT(liste->number == 0);
+    CU_ASSERT(liste->next->number == 2);
+    CU_ASSERT(liste->next->next->number == 1);
+    CU_ASSERT(liste->next->next->next->number == 3);
+
+    ll_swap_index(&liste, 2, 1);
+    CU_ASSERT(liste->number == 0);
+    CU_ASSERT(liste->next->number == 1);
+    CU_ASSERT(liste->next->next->number == 2);
+    CU_ASSERT(liste->next->next->next->number == 3);
+
+    ll_swap_index(&liste, 6, 1);
+    CU_ASSERT(liste->number == 0);
+    CU_ASSERT(liste->next->number == 1);
+    CU_ASSERT(liste->next->next->number == 2);
+    CU_ASSERT(liste->next->next->next->number == 3);
 
     ll_free(&liste);
 }

@@ -19,9 +19,9 @@ void ll_pop(Liste **list);
 void ll_free(Liste **list);
 
 int ll_length(Liste *list);
-void ll_add_index(Liste **list, int index, Liste *elem);
+int ll_add_index(Liste **list, int index, Liste *elem);
 int ll_get_value_index(Liste **list, int index);
-void ll_swap_index(Liste **list, int index0, int index1);
+int ll_swap_index(Liste **list, int index0, int index1);
 void ll_reverse(Liste **list);
 
 #endif

@@ -25,6 +25,10 @@ void test_d_ll_push_elem(void)
     double_linked_list *liste = d_ll_get_new_elem(1);
     double_linked_list *ptr = liste;
 
+    CU_ASSERT(liste->number == 1);
+    CU_ASSERT(liste->prev == NULL);
+    CU_ASSERT(liste->next == NULL);
+
     d_ll_push_elem(liste, d_ll_get_new_elem(2));
     d_ll_push_elem(liste, d_ll_get_new_elem(3));
 
@@ -46,6 +50,8 @@ void test_pop(void)
 {
     double_linked_list *liste = d_ll_get_new_elem(1);
 
+    // TODO : tester le pop pour une liste non initialiser (utiliser pragma pour passer au dessus des warnings)
+
     d_ll_push_elem(liste, d_ll_get_new_elem(2));
     d_ll_push_elem(liste, d_ll_get_new_elem(3));
     d_ll_pop(&liste);
@@ -60,8 +66,12 @@ void test_pop(void)
 void test_length(void)
 {
     int length;
-    double_linked_list *liste = d_ll_get_new_elem(1);
 
+    // double_linked_list *liste2; // erreur variable non initialisé
+    // length = d_ll_length(liste2);
+    // CU_ASSERT(length == 0);
+
+    double_linked_list *liste = d_ll_get_new_elem(1);
     d_ll_push_elem(liste, d_ll_get_new_elem(2));
     d_ll_push_elem(liste, d_ll_get_new_elem(3));
 
@@ -85,6 +95,8 @@ void test_ll_add_index(void)
     d_ll_push_elem(liste, d_ll_get_new_elem(3));
 
     d_ll_add_index(&liste, 1, liste2);
+
+    // TODO: vérifier le cas où l'insertion n'est pas possible
 
     double_linked_list *ptr = liste;
     ptr = ptr->next;

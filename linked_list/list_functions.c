@@ -76,13 +76,14 @@ int ll_length(Liste *list)
     return (1 + ll_length(list->next));
 }
 
-void ll_add_index(Liste **list, int index, Liste *elem)
+int ll_add_index(Liste **list, int index, Liste *elem)
 {
     int length = ll_length(*list);
     if (index > length)
     {
         printf("Ajout impossible !");
-        exit(1);
+        // exit(1);
+        return 0;
     }
 
     Liste *ptr_next;
@@ -95,11 +96,17 @@ void ll_add_index(Liste **list, int index, Liste *elem)
     ptr_next = ptr_prev->next;
     elem->next = ptr_next;
     ptr_prev->next = elem;
+
+    return 0;
 }
 
 int ll_get_value_index(Liste **list, int index)
 {
     Liste *ptr = *list;
+    int length = ll_length(*list);
+    if (length < index)
+        return -1;
+
     for (int i = 0; i < index; i++)
     {
         ptr = ptr->next;
@@ -107,18 +114,20 @@ int ll_get_value_index(Liste **list, int index)
     return ptr->number;
 }
 
-void ll_swap_index(Liste **list, int index0, int index1)
+int ll_swap_index(Liste **list, int index0, int index1)
 {
     int length = ll_length(*list);
     if (index1 > length || index0 > length)
     {
         printf("Ajout impossible !");
-        exit(1);
+        // exit(1);
+        return 0;
     }
 
     if (index0 > index1)
     {
         ll_swap_index(list, index1, index0);
+        return 0;
     }
 
     Liste *ptr = *list;
@@ -135,6 +144,8 @@ void ll_swap_index(Liste **list, int index0, int index1)
         ptr = ptr->next;
     }
     ptr->number = value_index0;
+
+    return 0;
 }
 
 void ll_reverse(Liste **list)

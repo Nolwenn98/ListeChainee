@@ -15,6 +15,6 @@ void d_ll_pop(double_linked_list **list);
 void d_ll_free(double_linked_list **list);
 void d_ll_print(double_linked_list *list);
 int d_ll_length(double_linked_list *list);
-void d_ll_add_index(double_linked_list **list, int index, double_linked_list *elem);
+int d_ll_add_index(double_linked_list **list, int index, double_linked_list *elem);
 
 #endif
